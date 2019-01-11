@@ -19,22 +19,20 @@ console.log(
   RABBITMQ_PORT
 );
 
-var url = "amqp://" + RABBITMQ_HOST + RABBITMQ_PORT;
-amqp.connect(url, function(err, conn) {
-  console.log("Connected to RabbitMQ at %s", url);
 
+var url = "amqp://" + RABBITMQ_HOST +":"+ RABBITMQ_PORT;
+amqp.connect(url, function(err, conn) {
   // this will fail if the queue is still not ready to accept consumers!
   conn.createChannel(
     function(err, ch) {
       if (err) throw err;
+      console.log("Connected to RabbitMQ at %s", url);
       ch.assertQueue(RABBITMQ_QUEUE, { durable: false });
       console.log("Consuming queue: %s", RABBITMQ_QUEUE);
-
       ch.consume(RABBITMQ_QUEUE, function(msg) {
         console.log("Received message: %s", msg);
-
         db.query(
-          "INSERT INTO table SET ?",
+          "INSERT INTO Messages SET ?",
           { message: msg.content.toString() },
           function(err, result) {
             if (err) throw err;

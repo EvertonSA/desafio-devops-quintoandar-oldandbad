@@ -8,7 +8,7 @@ port = os.getenv("RABBITMQ_PORT", 5672)
 queue = os.getenv("RABBITMQ_QUEUE", "hello")
 
 html = """ 
-<br>Type your favourite <i>pudim</i> flavour: 
+<br>Type your favourite <i>pie</i> flavour: 
 <br>
 <form method='POST' action='/'>
     <input type='text' name='flavour'>
@@ -21,6 +21,7 @@ html = """
 def index():
     if request.method == 'POST':
         app.logger.info(request.form.get("flavour"))
+        enqueue(request.form.get("flavour"))
     return html
 
 
@@ -42,4 +43,4 @@ def enqueue(value):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=8000)
+    app.run(debug=True, host="0.0.0.0", port=8080)
