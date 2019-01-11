@@ -127,8 +127,10 @@ The application is now exposed to port `8080` and can be accessed in [GCP](https
 To enchance developers experience volumes containing source codes are already mounted to the containers. Whenever a change is detected, it is triggered an automatically build and deploy process.
 
 ```bash
-
-logs from detected change
+hello-python_1  |  * Detected change in '/opt/hello-python/app.py', reloading
+hello-python_1  |  * Restarting with stat
+hello-python_1  |  * Debugger is active!
+hello-python_1  |  * Debugger PIN: 103-224-867
 
 ```
 
