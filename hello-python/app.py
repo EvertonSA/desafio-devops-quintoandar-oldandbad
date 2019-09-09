@@ -8,7 +8,7 @@ port = os.getenv("RABBITMQ_PORT", 5672)
 queue = os.getenv("RABBITMQ_QUEUE", "hello")
 
 html = """ 
-<br>Type your favourite <i>pie</i> flavour: 
+<br>Type your favourite <i>bolo</i> flavour: 
 <br>
 <form method='POST' action='/'>
     <input type='text' name='flavour'>
